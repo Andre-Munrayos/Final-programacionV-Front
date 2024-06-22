@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 function ContactForm() {
   const [formData, setFormData] = useState({
-    Nombre: '',
+    nombre: '',
     email: '',
     subject: '',
     mensaje: ''
@@ -19,7 +19,7 @@ function ContactForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.fullName || !formData.email || !formData.subject || !formData.message) {
+    if (!formData.nombre || !formData.email || !formData.subject || !formData.mensaje) {
       setError(true);
       return;
     }
@@ -27,7 +27,7 @@ function ContactForm() {
     setSubmitted(true);
     // Reset the form
     setFormData({
-      Nombre: '',
+      nombre: '',
       email: '',
       subject: '',
       mensaje: ''
@@ -35,14 +35,15 @@ function ContactForm() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div style={{ margin: '50px', width: '300px' }}>
+      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
         <input
           type="text"
-          name="Nombre"
+          name="nombre"
           placeholder="Nombre Completo"
-          value={formData.fullName}
+          value={formData.nombre}
           onChange={handleChange}
+          style={{ padding: '10px', fontSize: '16px' }}
         />
         <input
           type="email"
@@ -50,24 +51,27 @@ function ContactForm() {
           placeholder="Email"
           value={formData.email}
           onChange={handleChange}
+          style={{ padding: '10px', fontSize: '16px' }}
         />
         <input
           type="text"
           name="subject"
-          placeholder="Subject"
+          placeholder="Asunto"
           value={formData.subject}
           onChange={handleChange}
+          style={{ padding: '10px', fontSize: '16px' }}
         />
         <textarea
           name="mensaje"
           placeholder="Mensaje"
-          value={formData.message}
+          value={formData.mensaje}
           onChange={handleChange}
+          style={{ padding: '10px', fontSize: '16px', height: '100px' }}
         />
-        <button type="submit">Enviar</button>
+        <button type="submit" style={{ padding: '10px 20px', fontSize: '16px', cursor: 'pointer', backgroundColor: '#4CAF50', color: 'white', border: 'none' }}>Enviar</button>
       </form>
       {submitted && <div>Mensaje enviado :D!</div>}
-      {error && <div>!Porfavor rellenar todos lo campos.</div>}
+      {error && <div>¡Por favor, llena todos los campos!</div>}
     </div>
   );
 }
